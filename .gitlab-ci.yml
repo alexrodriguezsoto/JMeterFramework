@@ -1,0 +1,22 @@
+image: maven:latest
+
+stages:
+    - build
+    - test
+
+build:
+    stage: build
+    script:
+        - echo "Start maven build"
+        - mvn compile
+
+test:
+    stage: test
+    script:
+        - echo "Start Performance Test"
+        - mvn clean verify -DtestPlan=Login.jmx
+    artifacts:
+        paths:
+            - target/
+
+
